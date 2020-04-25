@@ -75,9 +75,9 @@ app.post("/repositories/:id/like", (request, response) => {
   const projectIndex = repositories.findIndex(project => project.id === id);
   if(projectIndex < 0) return response.status(400).json({ error: 'Project not found.' });
 
-  const likes = repositories[projectIndex].likes += 1;
+  repositories[projectIndex].likes += 1;
   
-  return response.status(200).json({ likes });
+  return response.status(200).json(repositories[projectIndex]);
 });
 
 module.exports = app;
